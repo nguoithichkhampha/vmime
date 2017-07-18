@@ -343,7 +343,7 @@ ENDIF()
 OPTION(
 	VMIME_BUILD_SAMPLES
 	"Build samples (in 'examples' directory)"
-	ON
+	OFF
 )
 
 
@@ -401,12 +401,12 @@ SET(CPACK_COMPONENT_GROUP_DEVELOPMENT_DESCRIPTION "")
 # Make a target "dist" to generate tarball
 SET(ARCHIVE_NAME ${CPACK_PACKAGE_NAME}-${CPACK_PACKAGE_VERSION})
 
-ADD_CUSTOM_TARGET(
-	dist
-	COMMAND git archive --prefix=${ARCHIVE_NAME}/ HEAD
-	| bzip2 > ${CMAKE_BINARY_DIR}/${ARCHIVE_NAME}.tar.bz2
-	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
-)
+#ADD_CUSTOM_TARGET(
+#	dist
+#	COMMAND git archive --prefix=${ARCHIVE_NAME}/ HEAD
+#	| bzip2 > ${CMAKE_BINARY_DIR}/${ARCHIVE_NAME}.tar.bz2
+#	WORKING_DIRECTORY ${CMAKE_SOURCE_DIR}
+#)
 
 # PkgConfig
 SET(prefix      ${CMAKE_INSTALL_PREFIX})
@@ -425,7 +425,7 @@ SET(VMIME_PKGCONFIG_REQUIRES "")
 IF(NOT CMAKE_BUILD_TYPE)
 	SET(
 		CMAKE_BUILD_TYPE
-		"Debug"
+		"Release"
 		CACHE STRING
 		"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
 		FORCE
@@ -614,12 +614,12 @@ OPTION(
 ##############################################################################
 # SASL support
 
-INCLUDE(cmake/FindGSasl.cmake)
+#INCLUDE(cmake/FindGSasl.cmake)
 
 OPTION(
 	VMIME_HAVE_SASL_SUPPORT
 	"Enable SASL support (requires GNU SASL library)"
-	ON
+	OFF
 )
 
 IF(VMIME_HAVE_SASL_SUPPORT)
@@ -645,11 +645,12 @@ ENDIF()
 ##############################################################################
 # SSL/TLS support
 
-INCLUDE(FindGnuTLS)
+#INCLUDE(FindGnuTLS)
+set(OPENSSL_USE_STATIC_LIBS TRUE)
 INCLUDE(FindOpenSSL)
 
-SET(CMAKE_REQUIRED_LIBRARIES "${GNUTLS_LIBRARY}")
-CHECK_FUNCTION_EXISTS(gnutls_priority_set_direct VMIME_HAVE_GNUTLS_PRIORITY_FUNCS)
+#SET(CMAKE_REQUIRED_LIBRARIES "${GNUTLS_LIBRARY}")
+#CHECK_FUNCTION_EXISTS(gnutls_priority_set_direct VMIME_HAVE_GNUTLS_PRIORITY_FUNCS)
 
 
 OPTION(
@@ -660,7 +661,7 @@ OPTION(
 
 SET(
 	VMIME_TLS_SUPPORT_LIB
-	"gnutls"
+	"openssl"
 	CACHE
 	STRING
 	"Library to use for SSL/TLS conversion"
@@ -981,7 +982,7 @@ CHECK_SYMBOL_EXISTS(SO_NOSIGPIPE sys/socket.h VMIME_HAVE_SO_NOSIGPIPE)
 
 CHECK_SYMBOL_EXISTS(MSG_NOSIGNAL sys/socket.h VMIME_HAVE_MSG_NOSIGNAL)
 
-CHECK_SYMBOL_EXISTS(strerror_r string.h VMIME_HAVE_STRERROR_R)
+#CHECK_SYMBOL_EXISTS(strerror_r string.h VMIME_HAVE_STRERROR_R)
 
 FIND_PACKAGE(Threads)
 
