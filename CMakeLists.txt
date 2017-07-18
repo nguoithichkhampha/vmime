@@ -591,13 +591,13 @@ OPTION(
 OPTION(
 	VMIME_HAVE_MESSAGING_PROTO_MAILDIR
 	"Enable Maildir protocol"
-	ON
+	OFF
 )
 
 OPTION(
 	VMIME_HAVE_MESSAGING_PROTO_SENDMAIL
 	"Enable Sendmail protocol"
-	ON
+	OFF
 )
 
 
