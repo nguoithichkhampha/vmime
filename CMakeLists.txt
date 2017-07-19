@@ -1120,7 +1120,7 @@ ENDIF()
 CONFIGURE_FILE(cmake/config.hpp.cmake ${CMAKE_BINARY_DIR}/src/vmime/config.hpp)
 
 # PkgConfig post-configuration
-CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/vmime.pc.in ${CMAKE_BINARY_DIR}/vmime.pc @ONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_LIST_DIR}/vmime.pc.in ${CMAKE_BINARY_DIR}/vmime.pc @ONLY)
 INSTALL(FILES ${CMAKE_BINARY_DIR}/vmime.pc DESTINATION "${VMIME_INSTALL_LIBDIR}/pkgconfig" COMPONENT headers)
 
 #INCLUDE(CPack)
