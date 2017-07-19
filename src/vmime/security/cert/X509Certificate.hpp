@@ -121,7 +121,7 @@ public:
 	  * @param caCert a certificate that is considered to be trusted one
 	  * @return true if the verification succeeded, false otherwise
 	  */
-	virtual bool verify(shared_ptr <const X509Certificate> caCert) const = 0;
+	virtual bool verifyX509(shared_ptr <const X509Certificate> caCert) const = 0;
 
 	/** Verify certificate's subject name against the given hostname.
 	  *

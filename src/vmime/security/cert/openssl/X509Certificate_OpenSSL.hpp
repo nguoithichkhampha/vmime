@@ -62,7 +62,7 @@ public:
 	const string getIssuerString() const;
 	bool checkIssuer(shared_ptr <const X509Certificate> issuer) const;
 
-	bool verify(shared_ptr <const X509Certificate> caCert) const;
+	bool verifyX509(shared_ptr <const X509Certificate> caCert) const;
 
 	bool verifyHostName
 		(const string& hostname,

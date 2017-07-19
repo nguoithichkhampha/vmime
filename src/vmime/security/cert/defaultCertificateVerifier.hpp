@@ -69,7 +69,7 @@ public:
 
 
 	// Implementation of 'certificateVerifier'
-	void verify(shared_ptr <certificateChain> chain, const string& hostname);
+	void verifyCertificate(shared_ptr <certificateChain> chain, const string& hostname);
 
 private:
 

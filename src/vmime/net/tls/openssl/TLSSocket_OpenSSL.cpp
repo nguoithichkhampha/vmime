@@ -395,7 +395,7 @@ void TLSSocket_OpenSSL::handshake()
 	if (certs == NULL)
 		throw exceptions::tls_exception("No peer certificate.");
 
-	m_session->getCertificateVerifier()->verify(certs, getPeerName());
+	m_session->getCertificateVerifier()->verifyCertificate(certs, getPeerName());
 
 	m_connected = true;
 }

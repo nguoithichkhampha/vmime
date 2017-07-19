@@ -312,7 +312,7 @@ bool X509Certificate_OpenSSL::checkIssuer(shared_ptr <const X509Certificate> cer
 }
 
 
-bool X509Certificate_OpenSSL::verify(shared_ptr <const X509Certificate> caCert_) const
+bool X509Certificate_OpenSSL::verifyX509(shared_ptr <const X509Certificate> caCert_) const
 {
 	shared_ptr <const X509Certificate_OpenSSL> caCert =
 		dynamicCast <const X509Certificate_OpenSSL>(caCert_);

@@ -56,7 +56,7 @@ defaultCertificateVerifier::defaultCertificateVerifier(const defaultCertificateV
 }
 
 
-void defaultCertificateVerifier::verify
+void defaultCertificateVerifier::verifyCertificate
 	(shared_ptr <certificateChain> chain, const string& hostname)
 {
 	if (chain->getCount() == 0)
@@ -119,7 +119,7 @@ void defaultCertificateVerifier::verifyX509
 	{
 		shared_ptr <X509Certificate> rootCa = m_x509RootCAs[i];
 
-		if (lastCert->verify(rootCa))
+		if (lastCert->verifyX509(rootCa))
 			trusted = true;
 	}
 
