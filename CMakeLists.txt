@@ -422,15 +422,16 @@ OPTION(
 ##############################################################################
 # Build type
 
-IF(NOT CMAKE_BUILD_TYPE)
-	SET(
-		CMAKE_BUILD_TYPE
-		"Release"
-		CACHE STRING
-		"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
-		FORCE
-	)
-ENDIF(NOT CMAKE_BUILD_TYPE)
+#IF(NOT CMAKE_BUILD_TYPE)
+#	SET(
+#		CMAKE_BUILD_TYPE
+#		"Release"
+#		CACHE STRING
+#		"Choose the type of build, options are: None Debug Release RelWithDebInfo MinSizeRel."
+#		FORCE
+#	)
+#ENDIF(NOT CMAKE_BUILD_TYPE)
+SET(CMAKE_BUILD_TYPE "Release")
 
 # Set a default build type for single-configuration
 # CMake generators if no build type is set.
@@ -1120,7 +1121,7 @@ ENDIF()
 CONFIGURE_FILE(cmake/config.hpp.cmake ${CMAKE_BINARY_DIR}/src/vmime/config.hpp)
 
 # PkgConfig post-configuration
-CONFIGURE_FILE(${CMAKE_SOURCE_DIR}/vmime.pc.in ${CMAKE_BINARY_DIR}/vmime.pc @ONLY)
+CONFIGURE_FILE(${CMAKE_CURRENT_LIST_DIR}/vmime.pc.in ${CMAKE_BINARY_DIR}/vmime.pc @ONLY)
 INSTALL(FILES ${CMAKE_BINARY_DIR}/vmime.pc DESTINATION "${VMIME_INSTALL_LIBDIR}/pkgconfig" COMPONENT headers)
 
 #INCLUDE(CPack)
